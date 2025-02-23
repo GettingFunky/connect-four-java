@@ -1,5 +1,12 @@
+/**
+ * The model class for the Connect Four game logic.
+ * Manages the game board, player turns, and win conditions.
+ */
 package connectfour;
 
+/**
+ * Initializes a new Connect Four game board.
+ */
 public class ConnectFourModel {
     public static final int ROWS = 6;
     public static final int COLS = 7;
@@ -15,7 +22,9 @@ public class ConnectFourModel {
         turnCount = 1;
         gameOver = false;
     }
-
+    /**
+     * Resets the board by filling it with empty spaces.
+     */
     private void initializeBoard() {
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLS; col++) {
@@ -51,6 +60,13 @@ public class ConnectFourModel {
         return -1;
     }
 
+    /**
+     * Checks if the last move resulted in a win.
+     *
+     * @param lastRow The row of the last move.
+     * @param lastCol The column of the last move.
+     * @return True if the move resulted in a win, false otherwise.
+     */
     public boolean checkWin(int lastRow, int lastCol) {
         // Check if last move caused a win
         return checkHorizontal(lastRow, lastCol) ||

@@ -1,8 +1,17 @@
+/**
+ * The graphical user interface for the Connect Four game.
+ * Displays a splash screen and initializes the game window.
+ */
+
 package connectfour;
 
 import javax.swing.*;
 
 public class ConnectFourGUI {
+    /**
+     * The main entry point for the application.
+     * Displays a splash screen before launching the game.
+     */
     public static void main(String[] args) {
         // Create a splash screen using JWindow
         JWindow splash = new JWindow();

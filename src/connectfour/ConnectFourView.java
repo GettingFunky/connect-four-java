@@ -1,3 +1,7 @@
+/**
+ * The view class for the Connect Four game.
+ * Handles rendering and user interactions.
+ */
 package connectfour;
 
 import javax.sound.sampled.AudioInputStream;
@@ -29,7 +33,12 @@ public class ConnectFourView extends JPanel {
         ));
         setupMouseListener();
     }
-    
+
+    /**
+     * Plays a sound effect from the given file path.
+     *
+     * @param soundFile The path to the sound file.
+     */
     private void playSound(String soundFile) {
         try {
             File file = new File(soundFile);
@@ -62,6 +71,12 @@ public class ConnectFourView extends JPanel {
         });
     }
 
+    /**
+     * Handles a valid move by checking win conditions and switching players.
+     *
+     * @param row The row where the token was placed.
+     * @param column The column where the token was placed.
+     */
     private void handleValidMove(int row, int column) {
         if (model.checkWin(row, column)) {
             model.setGameOver(true);
