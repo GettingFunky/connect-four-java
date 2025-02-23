@@ -19,9 +19,7 @@ A complete Java implementation of the classic Connect Four game with modern feat
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/GettingFunky/ConnectFour.git
-
-
+   git clone https://github.com/GettingFunky/connect-four-java
 ## Credits
 - Developed by <b>GettingFunky</b> (Vaggelis Theodorakis)
 - Sound effects are royalty free
