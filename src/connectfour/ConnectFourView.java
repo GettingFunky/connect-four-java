@@ -94,7 +94,16 @@ public class ConnectFourView extends JPanel {
             "Player " + (model.getCurrentPlayer() == '●' ? "1" : "2") + " wins!";
         playSound("assets/sounds/Game_End_Jingle.wav");
         JOptionPane.showMessageDialog(this, message, "Game Over", JOptionPane.INFORMATION_MESSAGE);
+        int inputJPane = JOptionPane.showConfirmDialog(null,
+                "Would you like to play again?", "Restart Game", JOptionPane.YES_NO_OPTION);
+        if (inputJPane == 0) {
+            model.restartGame();
+            repaint();
+        } else {
+            System.exit(0);
+        }
     }
+
 
     @Override
     protected void paintComponent(Graphics g) {

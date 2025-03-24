@@ -33,6 +33,13 @@ public class ConnectFourModel {
         }
     }
 
+    public void restartGame() {
+        initializeBoard();
+        currentPlayer = '●';
+        turnCount = 1;
+        gameOver = false;
+    }
+
     /**
      * Attempts to drop a token in the specified column
      * @param column 0-based column index
