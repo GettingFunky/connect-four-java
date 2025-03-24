@@ -10,7 +10,7 @@ package connectfour;
 public class ConnectFourModel {
     public static final int ROWS = 6;
     public static final int COLS = 7;
-    private char[][] board;
+    private final char[][] board;
     private char currentPlayer;
     private int turnCount;
     private boolean gameOver;
@@ -71,8 +71,8 @@ public class ConnectFourModel {
         // Check if last move caused a win
         return checkHorizontal(lastRow, lastCol) ||
                checkVertical(lastRow, lastCol) ||
-               checkDiagonalDownRight(lastRow, lastCol) ||
-               checkDiagonalDownLeft(lastRow, lastCol);
+               checkDiagonalPrimary(lastRow, lastCol) ||
+               checkDiagonalSecondary(lastRow, lastCol);
     }
 
     private boolean checkHorizontal(int row, int col) {
@@ -91,7 +91,7 @@ public class ConnectFourModel {
         return count >= 4;
     }
 
-    private boolean checkDiagonalDownRight(int row, int col) {
+    private boolean checkDiagonalPrimary(int row, int col) {
         int count = 1;
         // Check up-left
         for (int i = row-1, j = col-1; i >= 0 && j >= 0 && board[i][j] == currentPlayer; i--, j--) count++;
@@ -100,7 +100,7 @@ public class ConnectFourModel {
         return count >= 4;
     }
 
-    private boolean checkDiagonalDownLeft(int row, int col) {
+    private boolean checkDiagonalSecondary(int row, int col) {
         int count = 1;
         // Check up-right
         for (int i = row-1, j = col+1; i >= 0 && j < COLS && board[i][j] == currentPlayer; i--, j++) count++;
