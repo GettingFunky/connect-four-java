@@ -80,9 +80,11 @@ public class ConnectFourView extends JPanel {
     private void handleValidMove(int row, int column) {
         if (model.checkWin(row, column)) {
             model.setGameOver(true);
+            model.updateScore(false, model.getCurrentPlayer()); // νίκη
             showGameResult(false);
         } else if (model.isBoardFull()) {
             model.setGameOver(true);
+            model.updateScore(true, ' '); // ισοπαλία
             showGameResult(true);
         } else {
             model.switchPlayer();
@@ -90,14 +92,18 @@ public class ConnectFourView extends JPanel {
     }
 
     private void showGameResult(boolean isDraw) {
-        String message = isDraw ? "Game Over - It's a draw!" : 
-            "Player " + (model.getCurrentPlayer() == '●' ? "1" : "2") + " wins!";
+        String message = isDraw
+                ? "Game Over - It's a draw!"
+                : model.getCurrentPlayerName() + " wins!";
         playSound("assets/sounds/Game_End_Jingle.wav");
         JOptionPane.showMessageDialog(this, message, "Game Over", JOptionPane.INFORMATION_MESSAGE);
         int inputJPane = JOptionPane.showConfirmDialog(null,
-                "Would you like to play again?", "Restart Game", JOptionPane.YES_NO_OPTION);
+                String.format("Current score is %.1f - %.1f. \nWould you like to play again?", model.getScorePl1(),
+                        model.getScorePl2()), "Restart Game", JOptionPane.YES_NO_OPTION);
         if (inputJPane == 0) {
             model.restartGame();
+            JOptionPane.showMessageDialog(this, String.format("%s, you go first this time!", model.getCurrentPlayerName()),
+                    "Game Reset Successful, let's go!", JOptionPane.INFORMATION_MESSAGE);
             repaint();
         } else {
             System.exit(0);

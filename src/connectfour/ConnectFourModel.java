@@ -14,6 +14,8 @@ public class ConnectFourModel {
     private char currentPlayer;
     private int turnCount;
     private boolean gameOver;
+    private double scorePl1;
+    private double scorePl2;
 
     public ConnectFourModel() {
         board = new char[ROWS][COLS];
@@ -21,6 +23,8 @@ public class ConnectFourModel {
         currentPlayer = '●';
         turnCount = 1;
         gameOver = false;
+        scorePl1 = 0;
+        scorePl2 = 0;
     }
     /**
      * Resets the board by filling it with empty spaces.
@@ -33,9 +37,22 @@ public class ConnectFourModel {
         }
     }
 
+    public void updateScore(boolean isDraw, char winnerToken) {
+        if (isDraw) {
+            scorePl1 += 0.5;
+            scorePl2 += 0.5;
+        } else {
+            if (winnerToken == '●') {
+                scorePl1 += 1;
+            } else {
+                scorePl2 += 1;
+            }
+        }
+    }
+
     public void restartGame() {
         initializeBoard();
-        currentPlayer = '●';
+        currentPlayer = getCurrentPlayer() == '●' ? '○' : '●';
         turnCount = 1;
         gameOver = false;
     }
@@ -126,7 +143,10 @@ public class ConnectFourModel {
 
     // Getters
     public char getCurrentPlayer() { return currentPlayer; }
+    public String getCurrentPlayerName() { return currentPlayer == '●' ? "Player 1" : "Player 2"; }
     public char[][] getBoard() { return board; }
     public boolean isGameOver() { return gameOver; }
     public void setGameOver(boolean gameOver) { this.gameOver = gameOver; }
+    public double getScorePl1() { return scorePl1; }
+    public double getScorePl2() { return scorePl2; }
 }

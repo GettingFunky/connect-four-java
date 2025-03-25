@@ -34,9 +34,7 @@ public class ConnectFourGUI {
         
         // Now launch the main Connect Four window
         SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Connect Four");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            
+            JFrame frame = new JFrame("Connect Four Game");
             // Add the game view (and other components as needed)
             ConnectFourView gameView = new ConnectFourView();
             frame.add(gameView);
